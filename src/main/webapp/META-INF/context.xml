@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Catalogo" docBase="" debug="5" reloadable="true"
+	crossContext="true">
+
+    <Resource name="jdbc/videoteca" auth="Container" type="javax.sql.DataSource"
+		maxTotal="10" maxIdle="10" maxWaitMillis="10000" username="videoteca"
+		password="videoteca" driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/videoteca?serverTimezone=UTC&amp;useSSL=false" />
+
+</Context>
