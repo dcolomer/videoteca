@@ -14,7 +14,7 @@ A continuación se muestra visualmente las principales funcionalidades de la apl
 ### Inicio de la aplicación
 Se accede a la aplicación mediante la URL http://localhost:8080/videoteca/  
 
-![Inicio](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/01.png)
+![Inicio](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/00.png)
 
 ### Login
 Para acceder a la aplicación se debe introducir el usuario 'catalogo' y la contraseña 'catalogo'. Esta información no está almacenada en en la base de datos, sencillamente se encuentra 'hardcoded' en el propio código fuente (mala práctica...esto no se debe hacer jamás en una aplicación en producción)
