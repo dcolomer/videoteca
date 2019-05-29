@@ -2,9 +2,18 @@
 ## CRUD avanzado gestión de películas
 > ### Subida de ficheros con API Servlet 3.1
 
+## Introducción
+Se trata de una aplicación que muestra cómo realizar una gestión de una videoteca mediante tecnología API Servlet. Además del típico CRUD, podemos:
+- Subir al servidor las imágenes de las carátulas de las películas, las cuales se almacenan en la propia base de datos de la aplicación.
+- Obtener estadísticas sobre las películas (cuántas hay de cada género).
+- Realizar búsquedas (título, director, actor, etc).
+- Mostrar las películas ordenadas por algún criterio (código, título, director, etc).
+
 ## Tecnologías
 - Frontend: HTML, CSS, JavaScript 
 - Backend: Java/Servlets/JSP (Tomcat 8.5)
+- Frameworks: no
+- Pool de conexiones
 - Base de datos: MySQL 8
 - Construcción proyecto: Maven 3.5
 
@@ -16,50 +25,41 @@ Se accede a la aplicación mediante la URL http://localhost:8080/videoteca/
 
 ![Inicio](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/00.png)
 
-### Login
-Para acceder a la aplicación se debe introducir el usuario 'catalogo' y la contraseña 'catalogo'. Esta información no está almacenada en en la base de datos, sencillamente se encuentra 'hardcoded' en el propio código fuente (mala práctica...esto no se debe hacer jamás en una aplicación en producción)
+### Listar y editar películas
+Mediante la opción "Listar y editar" obtendremos un listado paginado de las películas. Estas se muestran de diez en diez. La información que aparece es un resumen de cada película. En cualquier momento podremos:
+- Buscar: Ir a la pantalla de búsqueda de películas
+- Añadir: Dar de alta un nueva película
+- Ordenar: Obtener un listado de películas ordenado por algún criterio
+- Inicio: Acceder directamente a la pantalla de bienvenida
+- Retroceder: Regresar a la pantalla anterior (que en muchos casos coincidirá con la pantalla de bienvenida)
 
-![Login](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/02.png)
+![Listar peliculas](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/01-listar.png)
 
-### Catelorías principales
-Una vez validados nos encontramos en la pantalla raíz de categorías. Vamos a seleccionar para esta ocasión la categoría 'peluquería', para lo cual podemos hacer doble click sobre el ítem 'peluquería' o bien solamente un click y a continuación pulsar el botón 'Acceder a la categoría':
+#### Ficha del video
+Si pulsamos sobre el título de una película iremos a la ficha del video, que no es más que información detallada de una película, esto es, la misma información que se mostraba previamente en el listado más otra que no se mostraba por falta de espacio, más la imagen de la carátula si la hubiere:
 
-![Categoria principal](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/03.png)
+![Ficha del video](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/02a-detalle.png)
 
-### Subcatelorías
-Ahora podemos seleccionar un fabricante de productos de peluquería. Seleccionamos, por ejemplo, L'Oreal, para lo cual podemos hacer doble click sobre el ítem 'L'Oreal' o bien solamente un click y a continuación pulsar el botón 'Acceder':
+ O una imagen con el mensaje "No disponible" en caso de que la imagen no tenga asociada una carátula:
+ 
+![Ficha del video sin caratula](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/02-detalle.png)
 
-![Fabricante de peluquería](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/04.png)
+Opciones disponibles en la pantalla "Ficha del video":
+- Modificar: Permite la edición de la película (incluyendo el cambio de carátula)
+- Eliminar: Borra la película de la base de datos (cuidado! se trata de un borrado físico)
+- Inicio: Acceder directamente a la pantalla de bienvenida
+- Retroceder: Regresar a la pantalla anterior (pantalla "Listar y editar")
 
-### Líneas de productos
-A continuación se nos muestran las diferentes líneas de productos del fabricante. Podemos seleccionar 'Expert', para lo cual podemos hacer doble click sobre el ítem 'Expert' o bien solamente un click y a continuación pulsar el botón 'Acceder':
+#### Modificar video
+En esta pantalla podemos cambiar cualquier atributo de la película a excepción de su código.  
+En las siguientes imágenes se muestra el caso en que modificamos una película que previamente no disponía de carátula. El proceso comienza cuando pulsamos en el botón "Seleccionar archivo" y seleccionamos una imagen de algún directorio. Una vez seleccionada la imagen con el mensaje "No disponible" aparece atenuada y más abajo aparece la nueva imagen, la cual sustituirá a la actual una vez que confirmemos los cambios.
 
-![Líneas de productos](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/05.png)
-
-### Sublíneas de productos
-Habitualmente una línea de productos está formada por diversas sublíneas. En nuestro caso vamos a seleccionar 'Vitamino color', para lo cual podemos hacer doble click sobre el ítem 'Vitamino color' o bien solamente un click y a continuación pulsar el botón 'Acceder':
-
-![Subíneas de productos](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/06.png)
-
-### Productos
-En este punto se nos muestra en forma tabular los diferentes productos de la línea de productos que hemos seleccionado. Vemos la descripción, precio, descuento y una imagen. Los productos aparecen paginados de tres en tres, por lo que podremos avanzar de página en página mediante los botones de la parte inferior-derecha de la pantalla. Es posible hacer un zoom de la imagen situando el cursor del ratón encima:
-
-![Productos](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/07.png)
-
-### Generación de PDF
-Podemos generar un PDF con la información de productos que se encuentre en pantalla. Para ello, sencillamente tenemos que pulsar el botón 'Generar PDF':
-
-![PDF Dialog](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/08a.png)  
-![PDF abierto](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/08b.png)
-
-### Búsqueda de productos
-
-Mediante el botón 'Buscar productos' se nos mostrará una ventana en la que podremos escribir texto relacionado con la descripción de los productos. Esta opción es útil cuando queremos obtener una relación de productos que tenga una descripción similar pero pertenezcan a diferentes fabricantes. Por ejemplo, un caso sería querer obtener cepillos, sea quien sea el fabricante:
-
-![Buscar Dialog](https://github.com/dcolomer/catalogo-cospel/blob/master/src/main/screenshots/09.png)
+![Modificar video 1](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/03-modificar.png)
+![Modificar video 2](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/04-cambiar-imagen.png)
+![Modificar video 3](https://github.com/dcolomer/videoteca/blob/master/src/main/snapshots/05-cambiar-imagen2.png)
 
 ## Bases de datos
-La base de datos se llama 'videoteca' y en el directorio src/main/db se proporciona un archivo comprimido de tipo sql, el cual contiene la estructura y los datos necesarios para el correcto funcionamiento de la aplicación.
+La base de datos se llama 'videoteca' y en el directorio src/main/db se proporciona un archivo comprimido de tipo sql, el cual contiene la estructura y los datos necesarios para el correcto funcionamiento de la aplicación (incluye también la creación de la base de datos).
 
 Las tablas de la base de datos son las siguientes:
 
@@ -73,7 +73,7 @@ Las credenciales para la conexión Tomcat-MySQL son:
 - usuario: videoteca
 - password: videoteca
 
-Por tanto, en MySQL hay que definir un usuario con estas credenciales y con permimos CRUD para la base de datos 'catalogo_cospel'.
+Por tanto, en MySQL hay que definir un usuario con estas credenciales y con permisos CRUD para la base de datos 'videoteca'.
 
 ## Construcción del proyecto y deploy en Tomcat
 
